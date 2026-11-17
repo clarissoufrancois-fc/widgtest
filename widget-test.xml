@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs
+      title="Test DOORS Next"
+      description="Premier widget OpenSocial pour DOORS Next 7.1"
+      author="Francois Clarissou"
+      height="260">
+
+    <Require feature="dynamic-height"/>
+  </ModulePrefs>
+
+  <Content type="html">
+    <![CDATA[
+      <!DOCTYPE html>
+      <html lang="fr">
+        <head>
+          <meta charset="UTF-8">
+
+          <style>
+            body {
+              margin: 0;
+              padding: 16px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #161616;
+              background: #ffffff;
+            }
+
+            .card {
+              border-left: 5px solid #0f62fe;
+              background: #f4f4f4;
+              padding: 16px;
+            }
+
+            h2 {
+              margin: 0 0 10px 0;
+              font-size: 20px;
+            }
+
+            p {
+              margin: 6px 0;
+            }
+
+            button {
+              margin-top: 12px;
+              padding: 8px 14px;
+              border: 0;
+              color: #ffffff;
+              background: #0f62fe;
+              cursor: pointer;
+            }
+
+            #result {
+              margin-top: 12px;
+              font-weight: bold;
+            }
+          </style>
+
+          <script>
+            function runTest() {
+              var now = new Date();
+
+              document.getElementById("result").textContent =
+                "JavaScript fonctionne - " + now.toLocaleString("fr-FR");
+
+              if (
+                typeof gadgets !== "undefined" &&
+                gadgets.window &&
+                gadgets.window.adjustHeight
+              ) {
+                gadgets.window.adjustHeight();
+              }
+            }
+
+            function initializeWidget() {
+              document.getElementById("status").textContent =
+                "Le gadget OpenSocial est chargé.";
+
+              if (
+                typeof gadgets !== "undefined" &&
+                gadgets.window &&
+                gadgets.window.adjustHeight
+              ) {
+                gadgets.window.adjustHeight();
+              }
+            }
+
+            if (
+              typeof gadgets !== "undefined" &&
+              gadgets.util &&
+              gadgets.util.registerOnLoadHandler
+            ) {
+              gadgets.util.registerOnLoadHandler(initializeWidget);
+            } else {
+              window.addEventListener("load", initializeWidget);
+            }
+          </script>
+        </head>
+
+        <body>
+          <div class="card">
+            <h2>Test DOORS Next 7.1</h2>
+
+            <p>Bonjour François.</p>
+
+            <p id="status">
+              Initialisation du widget...
+            </p>
+
+            <button type="button" onclick="runTest()">
+              Tester JavaScript
+            </button>
+
+            <div id="result"></div>
+          </div>
+        </body>
+      </html>
+    ]]>
+  </Content>
+</Module>
